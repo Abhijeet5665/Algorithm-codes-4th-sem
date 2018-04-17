@@ -1,0 +1,53 @@
+#include<stdio.h>
+
+int min(int x,int y)
+{
+return(x<y)?x:y;
+}
+
+void floyd(int a[10][10],int n)
+{
+int i,j,k;
+for(k=1;k<=n;k++){
+
+for(i=1;i<=n;i++){
+for(j=1;j<=n;j++)
+a[i][j]=min(a[i][j],a[i][k]+a[k][j]);
+}
+}
+}
+
+
+
+
+
+void main(){
+int n,i,j;
+printf("enter the vertices\n");
+scanf("%d",&n);
+int a[10][10];
+
+printf("enter the graph matrix\n");
+
+for(i=1;i<=n;i++){
+for(j=1;j<=n;j++){
+scanf("%d",&a[i][j]);
+if(a[i][j]==-1)
+a[i][j]=1000;
+}
+}
+char x='*';
+floyd(a,n);
+for(i=1;i<=n;i++)
+{
+for(j=1;j<=n;j++){
+if(a[i][j]==1000)
+printf("%c ",x);
+else
+printf("%d ",a[i][j]);
+}
+printf("\n");
+}
+}
+
+
